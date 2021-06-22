@@ -969,7 +969,9 @@ function signupMovies() {
       fname: fname,
       lname: lname,
       subscriptions: [],
-      permissions: []
+      permissions: [
+        'addsub'
+      ]
     };
 
     // push user to database
