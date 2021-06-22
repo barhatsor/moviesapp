@@ -1079,7 +1079,9 @@ function editUser(user) {
   login.querySelector('#password').value = user.pass;
 
   // if user has permissions
-  if (user.permissions.length > 0) {
+  let userObj = usersArr.find(x => x.uid === loggedId);
+  
+  if (userObj.permissions.length > 0) {
     
     user.permissions.forEach(permission => {
 
