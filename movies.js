@@ -1246,8 +1246,6 @@ var axios = {
           }
         };
 
-        cors = options ? 'https://berrycors.herokuapp.com/' : '';
-
         xmlhttp.open('PUT', url, true);
 
         xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
