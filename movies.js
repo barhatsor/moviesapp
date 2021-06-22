@@ -1204,7 +1204,7 @@ async function deleteUserInDB(id) {
 var genUID = () => { return Math.random().toString(36).substring(2) };
 
 var axios = {
-  'get': (url, options) => {
+  'get': (url) => {
     return new Promise((resolve, reject) => {
       try {
         var xmlhttp = new XMLHttpRequest();
@@ -1214,14 +1214,29 @@ var axios = {
           }
         };
 
-        cors = options ? 'https://berrycors.herokuapp.com/' : '';
-
-        xmlhttp.open('GET', (cors + url), true);
+        xmlhttp.open('GET', url, true);
         xmlhttp.send();
       } catch(e) { reject(e) }
     });
   },
-  'post': (url, data, options) => {
+  'post': (url, data) => {
+    return new Promise((resolve, reject) => {
+      try {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && (this.status == 201 || this.status == 200)) {
+            resolve(JSON.parse(this.responseText));
+          }
+        };
+
+        xmlhttp.open('POST', url, true);
+
+        xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xmlhttp.send(JSON.stringify(data));
+      } catch(e) { reject(e) }
+    });
+  },
+  'put': (url, data) => {
     return new Promise((resolve, reject) => {
       try {
         var xmlhttp = new XMLHttpRequest();
@@ -1233,33 +1248,14 @@ var axios = {
 
         cors = options ? 'https://berrycors.herokuapp.com/' : '';
 
-        xmlhttp.open('POST', (cors + url), true);
+        xmlhttp.open('PUT', url, true);
 
         xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         xmlhttp.send(JSON.stringify(data));
       } catch(e) { reject(e) }
     });
   },
-  'put': (url, data, options) => {
-    return new Promise((resolve, reject) => {
-      try {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && (this.status == 201 || this.status == 200)) {
-            resolve(JSON.parse(this.responseText));
-          }
-        };
-
-        cors = options ? 'https://berrycors.herokuapp.com/' : '';
-
-        xmlhttp.open('PUT', (cors + url), true);
-
-        xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-        xmlhttp.send(JSON.stringify(data));
-      } catch(e) { reject(e) }
-    });
-  },
-  'delete': (url, options) => {
+  'delete': (url) => {
     return new Promise((resolve, reject) => {
       try {
         var xmlhttp = new XMLHttpRequest();
@@ -1269,9 +1265,7 @@ var axios = {
           }
         };
 
-        cors = options ? 'https://berrycors.herokuapp.com/' : '';
-
-        xmlhttp.open('DELETE', (cors + url), true);
+        xmlhttp.open('DELETE', url, true);
         xmlhttp.send();
       } catch(e) { reject(e) }
     });
@@ -1330,7 +1324,7 @@ let usersArr =
     id: 0,
     uid: '526iw15vj3x',
     username: 'barhatsor',
-    pass: 'limor1',
+    pass: 'bar1',
     fname: 'Bar',
     lname: 'Hatsor',
     subscriptions: [
@@ -1360,7 +1354,7 @@ let usersArr =
     id: 2,
     uid: 'cptzqn7p0mu',
     username: 'jjaqques',
-    pass: 'limor100',
+    pass: 'james1',
     fname: 'James',
     lname: 'Jaqques',
     subscriptions: [],
