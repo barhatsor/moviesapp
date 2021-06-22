@@ -34,17 +34,21 @@ const header = document.querySelector('.header'),
 let loggedId;
 
 function checkLogin() {
+  
+  try {
+    
+    // if logged in previously
+    if (localStorage.loggedId) {
 
-  // if logged in previously
-  if (localStorage.loggedId) {
+      // log user id
+      loggedId = localStorage.loggedId;
 
-    // log user id
-    loggedId = localStorage.loggedId;
+      // hide login prompt
+      loginWrapper.classList.add('hidden');
 
-    // hide login prompt
-    loginWrapper.classList.add('hidden');
-
-  }
+    }
+    
+  } catch(e) {}
   
 }
 
