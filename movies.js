@@ -703,13 +703,23 @@ function addSubscription(movie) {
     
     // push new subscription
     let user = usersArr.find(x => (x.username == username));
-    user.subscriptions.push(movie.name + '|' + movie.uid);
+        
+    // if user exists
+    if (user) {
     
-    renderSub(movieArr);
+      user.subscriptions.push(movie.name + '|' + movie.uid);
     
-    updateUserInDB(user);
+      renderSub(movieArr);
     
-    loginWrapper.classList.add('hidden');
+      updateUserInDB(user);
+    
+      loginWrapper.classList.add('hidden');
+      
+    } else {
+      
+      alert('User does not exist.');
+      
+    }
     
   })
   
