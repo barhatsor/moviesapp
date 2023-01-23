@@ -1335,7 +1335,7 @@ let usersArr =
   {
     id: 0,
     uid: '526iw15vj3x',
-    username: 'barhatsor',
+    username: 'benhatsor',
     pass: 'bar1',
     fname: 'Bar',
     lname: 'Hatsor',
